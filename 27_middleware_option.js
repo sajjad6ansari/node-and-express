@@ -1,28 +1,28 @@
-const express = require('express')
-const app = express()
-const morgan = require('morgan')
-const logger = require('./logger')
-const authorize = require('./authorize')
-//  req => middleware => res
 
-// app.use([logger, authorize])
-// app.use(express.static('./public'))
+const express=require('express')
+const app=express()
+
+//first need to install morgan
+const morgan=require('morgan')
+
 app.use(morgan('tiny'))
 
-app.get('/', (req, res) => {
-  res.send('Home')
-})
-app.get('/about', (req, res) => {
-  res.send('About')
-})
-app.get('/api/products', (req, res) => {
-  res.send('Products')
-})
-app.get('/api/items', (req, res) => {
-  console.log(req.user)
-  res.send('Items')
+app.get('/',(req,res)=>{
+    res.send('Home')
 })
 
-app.listen(5000, () => {
-  console.log('Server is listening on port 5000....')
+app.get('/api/products',(req,res)=>{
+    res.send('Products')
+})
+app.get('/api/items',(req,res)=>{
+    console.log(req.user)
+    res.send('Items')
+})
+
+app.get('/about',(req,res)=>{
+      res.send('About')
+})
+
+app.listen(3000,()=>{
+    console.log('server running on port 3000')
 })
